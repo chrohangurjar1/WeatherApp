@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather App</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-5">Weather App</h1>
+        <form action="/weather" method="get">
+            <div class="form-group">
+                <label for="city">Enter city name:</label>
+                <input type="text" id="city" name="city" class="form-control" placeholder="e.g. London" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Get Weather</button>
+        </form>
+
+        <div class="mt-4" th:if="${weather != null}">
+            <h2>Weather in <span th:text="${city}"></span></h2>
+            <p>Temperature: <span th:text="${weather.main.temp}"></span>°C</p>
+            <p>Feels Like: <span th:text="${weather.main.feels_like}"></span>°C</p>
+            <p>Description: <span th:text="${weather.weather[0].description}"></span></p>
+        </div>
+    </div>
+</body>
+</html>
